@@ -1,0 +1,133 @@
+--In this project, I create multiple tables about some of 5 of my favorite 80s-90s Singers and answer interesting questions regarding their musical journey by joining them.
+
+CREATE TABLE OldSingersDemographics
+(ID INTEGER PRIMARY KEY, 
+Name TEXT, 
+Age INTEGER,
+Birthplace TEXT,
+NetworthInMillions INTEGER,
+Status TEXT);
+
+INSERT INTO OldSingersDemographics VALUES 
+(1, 'Bryan Adams', 63, 'Kingston, Ontario, Canada', 75, 'Active'),
+(2, 'Richard Marx', 59, 'Chicago, Illinois, United States', 25, 'Active'),
+(3, 'George Michael', 53, 'East Finchley, England, United Kingdom', 200, 'Deceased'),
+(4, 'Jon Bon Jovi', 61, 'Perth Amboy, New Jersey, United States', 410, 'Active'),
+(5, 'Prince', 58, 'Minneapolis, Minnesota, United States', 250, 'Deceased');
+
+CREATE TABLE Songs 
+(ID INTEGER PRIMARY KEY,
+SingerID INTEGER,
+Title TEXT,
+ReleaseDate INTEGER);
+
+INSERT INTO Songs VALUES 
+(1, 1, 'Heaven', 1984),
+(2, 1, 'Summer of ''69', 1985),
+(3, 1, 'Nothing I''ve Ever Known', 1991),
+(4, 1, 'Please Forgive Me', 1993),
+(5, 1, 'Everything I do, I do it for you', 1991),
+(6, 1, 'Talk to Me', 1984),
+(7, 2, 'Right Here Waiting', 1989),
+(8, 2, 'Endless Summer Nights', 1988),
+(9, 2, 'Hazard', 1992),
+(10, 2, 'Should''ve Known Better', 1987),
+(11, 2, 'Now and Forever', 1994),
+(12, 2, 'Too Late to Say Goodbye', 1989),
+(13, 2, 'Hold on to the Nights', 1988),
+(14, 2, 'This I Promise You', 1997),
+(15, 2, 'Keep on Loving You', 1980),
+(16, 3, 'Careless Whisper', 1984), 
+(17, 3, 'Wake Me Up Before You Go', 1984),
+(18, 3, 'One More Try', 1987),
+(19, 4, 'Livin'' on a Prayer', 1986),
+(20, 4, 'Bed of Roses', 1992),
+(21, 4, 'You Give Love a Bad Name', 1986),
+(22, 4, 'Always', 1994),
+(23, 4, 'It''s My Life', 2000),
+(24, 5, 'Nothing Compares 2 U', 1985),
+(25, 5, 'Purple Rain', 1984);
+
+CREATE TABLE AlbumsReleased
+(SingerID INTEGER,
+StudioAlbums INTEGER,
+LiveAlbums INTEGER);
+
+INSERT INTO AlbumsReleased VALUES 
+(1, 15, 6),
+(2, 13, 3),
+(3, 7, 1),
+(4, 15, 3),
+(5, 42, 5);
+
+--What are 3 of Bryan Adam's good songs? 
+
+SELECT Songs.Title 
+FROM OldSingersDemographics Demo
+JOIN Songs ON Demo.ID = Songs.SingerID
+WHERE Name = 'Bryan Adams'
+LIMIT 3;
+
+
+--What was the release date of George Michael's song "Careless Whisper"?
+
+SELECT Songs.ReleaseDate
+FROM OldSingersDemographics Demo
+JOIN Songs ON Demo.ID = Songs.SingerID
+WHERE Demo.Name = 'George Michael' AND Songs.Title = 'Careless Whisper';
+
+--How many studio albums were released by each singer in total?
+
+SELECT Demo.Name, Albums.StudioAlbums AS 'Total Albums'
+FROM OldSingersDemographics Demo
+JOIN AlbumsReleased Albums ON Demo.ID = Albums.SingerID
+GROUP BY Demo.Name;
+
+--Which of the singers released at least 3 live albums? 
+
+SELECT Demo.Name 
+FROM OldSingersDemographics Demo
+JOIN AlbumsReleased Albums ON Demo.ID=Albums.SingerID
+WHERE LiveAlbums >= 3
+GROUP BY Demo.Name;
+
+--Which singers released songs in the 90s?
+
+SELECT Demo.Name
+FROM OldSingersDemographics Demo
+LEFT JOIN Songs ON Demo.ID = Songs.SingerID
+WHERE Songs.ReleaseDate LIKE '199_' AND Status = 'Active'
+GROUP BY Name;
+
+--At what age did George Michael pass away? How many studio albums did he have released? 
+
+SELECT Demo.Age, Albums.StudioAlbums
+FROM OldSingersDemographics Demo
+JOIN AlbumsReleased Albums
+ON Demo.ID = Albums.SingerID
+WHERE Name = 'George Michael';
+
+--What is the birthplace and the name of the singers with a networth of at least $150 million?
+
+SELECT Demo.Name, Demo.Birthplace
+FROM OldSingersDemographics Demo
+WHERE NetworthInMillions >= 150;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
