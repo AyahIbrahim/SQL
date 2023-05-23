@@ -1,0 +1,68 @@
+# SQL-Portfolio
+
+--Create an electronics store database:
+
+CREATE TABLE Electronics (ID INTEGER PRIMARY KEY, Brand TEXT, Model TEXT, Price INTEGER, Category TEXT, Description TEXT, Stock INTEGER);
+
+INSERT INTO Electronics VALUES
+(1, 'Samsung', 'Galaxy S21', 999, 'Smartphone', '6.2" display, 128GB storage', 10),
+(2, 'Samsung', 'Galaxy Watch 4', 349, 'Smartwatch', 'AMOLED display, heart rate monitoring, GPS', 8),
+(3, 'Apple', 'MacBook Air', 1199, 'Laptop', '13.3" Retina display, 256GB SSD', 5),
+(4, 'Apple', 'AirPods Pro', 249, 'Headphones', 'Active noise cancellation, wireless charging case', 9),
+(5, 'Sony', 'WH-1000XM4', 349, 'Headphones', 'Noise-canceling, Bluetooth, Black', 8),
+(6, 'Sony', 'A7 III', 1999, 'Camera', 'Full-frame mirrorless, 24.2MP, 4K video', 6),
+(7, 'LG', 'OLED65CXPUA', 1999, 'TV', '65" OLED, 4K UHD, HDR, Smart TV', 3),
+(8, 'Sony', 'PlayStation 5', 499, 'Gaming Console', '8-core AMD Zen 2 CPU, 825GB SSD', 4),
+(9, 'Canon', 'EOS R6', 2399, 'Camera', 'Full-frame mirrorless, 20.1MP, 4K', 6),
+(10, 'Dell', 'XPS 13', 1399, 'Laptop', '13.4" InfinityEdge display, 512GB SSD', 7),
+(11, 'Bose', 'SoundLink Revolve+', 299, 'Bluetooth Speaker', '360-degree sound, up to 16 hours battery', 12),
+(12, 'HP', 'Pavilion Gaming Laptop', 899, 'Laptop', '15.6" FHD display, Intel Core i7, 16GB RAM', 3),
+(13, 'JBL', 'Flip 5', 119, 'Bluetooth Speaker', 'Waterproof, up to 12 hours battery', 15),
+(14, 'Microsoft', 'Xbox Series X', 499, 'Gaming Console', '8-core AMD Zen 2 CPU, 1TB SSD', 5),
+(15, 'Lenovo', 'IdeaPad 5', 699, 'Laptop', '14" FHD display, AMD Ryzen 7, 512GB SSD', 4);
+
+--Display all electronics from lowest price to highest:
+
+SELECT *
+FROM Electronics
+ORDER BY Price; 
+
+--Display the different categories of electronics with how many of each is available in stock: 
+
+SELECT Category, COUNT(*) AS 'Total Electronics'
+FROM Electronics
+GROUP BY Category;
+
+--Display the top 5 most expensive electronics:
+
+SELECT *
+FROM Electronics
+ORDER BY Price DESC
+LIMIT 5;
+
+--Display the average price and maximum price of a camera:
+
+SELECT AVG(Price) AS 'Average Price', MAX(Price) as 'Maximum Price'
+FROM Electronics
+WHERE Category = 'Camera';
+
+--Display all Apple and Samsung electronics from lowest price to highest:
+
+SELECT * 
+FROM Electronics 
+WHERE Brand IN('Apple', 'Samsung')
+ORDER BY Price;
+
+--Display a laptop under $1000: 
+
+SELECT * 
+FROM Electronics
+WHERE Category = 'Laptop' and Price < 1000;
+
+--Display a smartwatch that has a GPS feature: 
+
+SELECT * 
+FROM Electronics
+WHERE Category = 'Smartwatch' and Description LIKE '%GPS%';
+
+
