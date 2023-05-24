@@ -113,7 +113,23 @@ SELECT Demo.Name, Demo.Birthplace
 FROM OldSingersDemographics Demo
 WHERE NetworthInMillions >= 150;
 
+-- Total number of songs per singer:
 
+SELECT Demo.Name, COUNT(*) AS 'Total Songs'
+FROM OldSingersDemographics Demo
+JOIN Songs ON Demo.ID = Songs.SingerID
+GROUP BY Demo.Name
+HAVING COUNT(*) > 3;
+
+-- Group songs by decade of release:
+
+SELECT Songs.Title, 
+       CASE 
+          WHEN Songs.ReleaseDate >= 1980 AND Songs.ReleaseDate < 1990 THEN '1980s'
+          WHEN Songs.ReleaseDate >= 1990 AND Songs.ReleaseDate < 2000 THEN '1990s'
+          ELSE 'Unknown'
+       END AS 'Decade'
+FROM Songs;
 
 
 
