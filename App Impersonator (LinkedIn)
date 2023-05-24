@@ -1,0 +1,62 @@
+-- In this project, I will be mostly using the UPDATE and DELETE functions to emulate what occurs to some user profiles on LinkedIn all of which have 400 connections (imagining that the app stores the data in a SQL database).
+
+CREATE TABLE UserProfiles 
+(UserID INTEGER PRIMARY KEY,
+FullName TEXT,
+Headline TEXT,
+Company TEXT,
+Location TEXT,
+Skills TEXT);
+
+INSERT INTO UserProfiles VALUES
+(1, 'John Doe', 'Software Engineer', 'Apple', 'New York', 'Java, Python, SQL'),
+(2, 'Jane Smith', 'Marketing Manager', 'TikTok', 'San Francisco', 'Digital Marketing, Social Media'),
+(3, 'Mike Johnson', 'Data Scientist', 'Amazon', 'Chicago', 'Machine Learning, R, Python');
+
+-- John Doe was promoted at his job as a result of learning a new programming language: 
+
+UPDATE UserProfiles
+SET Headline = 'Senior Software Engineer', Skills = 'Java, Python, SQL, C++'
+WHERE UserID = 1;
+
+SELECT * FROM UserProfiles;
+
+-- Completely deleting a user profile: 
+
+DELETE FROM UserProfiles
+WHERE UserID = 2;
+
+SELECT * FROM UserProfiles;
+
+-- Adding a new user profile:
+
+INSERT INTO UserProfiles VALUES
+(2, 'Sarah Young', 'Product Manager', 'Google', 'Mountain View', 'Product Management, Data Analysis'),
+(4, 'Alexandra Lee', 'Product Designer', 'Microsoft', 'Seattle', 'UI/UX Design, Prototyping, Adobe Creative Suite');
+
+SELECT * FROM UserProfiles;
+
+-- A recruiting manager is looking for a candidate with specific skills to fill a position at his company: 
+
+SELECT * FROM UserProfiles
+WHERE Skills LIKE '%Python%' OR Skills LIKE '%SQL%';
+
+
+-- Adding a new column to the table:
+
+ALTER TABLE UserProfiles ADD Connections TEXT DEFAULT '400';
+
+-- Updating the connections number for a specific user:
+
+UPDATE UserProfiles
+SET Connections = '500+'
+WHERE UserID = 1;
+
+SELECT * FROM UserProfiles;
+
+-- Counting the total number of profiles after all the changes: 
+SELECT COUNT(*) AS 'Number of Profiles' FROM UserProfiles;
+
+
+
+
