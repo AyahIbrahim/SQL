@@ -1,4 +1,6 @@
--- Create an electronics store database:
+/* In this project, I created an electronics store database 
+and used SELECT queries and filtering conditions to answer some 
+interesting questions. */
 
 CREATE TABLE Electronics (ID INTEGER PRIMARY KEY, Brand TEXT, Model TEXT, Price INTEGER, Category TEXT, Description TEXT, Stock INTEGER);
 
