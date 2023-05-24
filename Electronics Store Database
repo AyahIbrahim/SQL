@@ -1,4 +1,4 @@
---Create an electronics store database:
+-- Create an electronics store database:
 
 CREATE TABLE Electronics (ID INTEGER PRIMARY KEY, Brand TEXT, Model TEXT, Price INTEGER, Category TEXT, Description TEXT, Stock INTEGER);
 
@@ -19,39 +19,39 @@ INSERT INTO Electronics VALUES
 (14, 'Microsoft', 'Xbox Series X', 499, 'Gaming Console', '8-core AMD Zen 2 CPU, 1TB SSD', 5),
 (15, 'Lenovo', 'IdeaPad 5', 699, 'Laptop', '14" FHD display, AMD Ryzen 7, 512GB SSD', 4);
 
---Display the different categories of electronics with how many of each is available in stock: 
+-- Display the different categories of electronics with how many of each is available in stock: 
 
 SELECT Category, COUNT(*) AS 'Total Electronics'
 FROM Electronics
 GROUP BY Category;
 
---Display the top 5 most affordable electronics:
+-- Display the top 5 most affordable electronics:
 
 SELECT *
 FROM Electronics
 ORDER BY Price ASC
 LIMIT 5;
 
---Display the average price and maximum price of a camera:
+-- Display the average price and maximum price of a camera:
 
 SELECT AVG(Price) AS 'Average Price', MAX(Price) as 'Maximum Price'
 FROM Electronics
 WHERE Category = 'Camera';
 
---Display all Apple and Samsung electronics from lowest price to highest:
+-- Display all Apple and Samsung electronics from lowest price to highest:
 
 SELECT * 
 FROM Electronics 
 WHERE Brand IN('Apple', 'Samsung')
 ORDER BY Price;
 
---Display a laptop under $1000: 
+-- Display a laptop under $1000: 
 
 SELECT * 
 FROM Electronics
 WHERE Category = 'Laptop' and Price < 1000;
 
---Display a smartwatch that has a GPS feature: 
+-- Display a smartwatch that has a GPS feature: 
 
 SELECT * 
 FROM Electronics
