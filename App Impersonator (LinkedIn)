@@ -1,4 +1,6 @@
--- In this project, I will be mostly using the UPDATE and DELETE functions to emulate what occurs to some user profiles on LinkedIn all of which have 400 connections (imagining that the app stores the data in a SQL database).
+/* In this project, I will be mostly using the UPDATE and DELETE functions to
+emulate what occurs to some user profiles on LinkedIn all of which have 400 connections 
+(imagining that the app stores the data in a SQL database). */
 
 CREATE TABLE UserProfiles 
 (UserID INTEGER PRIMARY KEY,
@@ -55,6 +57,7 @@ WHERE UserID = 1;
 SELECT * FROM UserProfiles;
 
 -- Counting the total number of profiles after all the changes: 
+
 SELECT COUNT(*) AS 'Number of Profiles' FROM UserProfiles;
 
 
