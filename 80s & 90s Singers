@@ -1,4 +1,5 @@
---In this project, I create multiple tables about some of 5 of my favorite 80s-90s Singers and answer interesting questions regarding their musical journey by joining them.
+/* In this project, I created multiple tables about some of 5 of my favorite 80s-90s Singers 
+and answered interesting questions regarding their musical journey using JOIN. */
 
 CREATE TABLE OldSingersDemographics
 (ID INTEGER PRIMARY KEY, 
@@ -60,7 +61,7 @@ INSERT INTO AlbumsReleased VALUES
 (4, 15, 3),
 (5, 42, 5);
 
---What are 3 of Bryan Adam's good songs? 
+-- What are 3 of Bryan Adam's good songs? 
 
 SELECT Songs.Title 
 FROM OldSingersDemographics Demo
@@ -68,22 +69,21 @@ JOIN Songs ON Demo.ID = Songs.SingerID
 WHERE Name = 'Bryan Adams'
 LIMIT 3;
 
-
---What was the release date of George Michael's song "Careless Whisper"?
+-- What was the release date of George Michael's song "Careless Whisper"?
 
 SELECT Songs.ReleaseDate
 FROM OldSingersDemographics Demo
 JOIN Songs ON Demo.ID = Songs.SingerID
 WHERE Demo.Name = 'George Michael' AND Songs.Title = 'Careless Whisper';
 
---How many studio albums were released by each singer in total?
+-- How many studio albums were released by each singer in total?
 
 SELECT Demo.Name, Albums.StudioAlbums AS 'Total Albums'
 FROM OldSingersDemographics Demo
 JOIN AlbumsReleased Albums ON Demo.ID = Albums.SingerID
 GROUP BY Demo.Name;
 
---Which of the singers released at least 3 live albums? 
+-- Which of the singers released at least 3 live albums? 
 
 SELECT Demo.Name 
 FROM OldSingersDemographics Demo
@@ -91,7 +91,7 @@ JOIN AlbumsReleased Albums ON Demo.ID=Albums.SingerID
 WHERE LiveAlbums >= 3
 GROUP BY Demo.Name;
 
---Which singers released songs in the 90s?
+-- Which singers released songs in the 90s?
 
 SELECT Demo.Name
 FROM OldSingersDemographics Demo
@@ -99,7 +99,7 @@ LEFT JOIN Songs ON Demo.ID = Songs.SingerID
 WHERE Songs.ReleaseDate LIKE '199_' AND Status = 'Active'
 GROUP BY Name;
 
---At what age did George Michael pass away? How many studio albums did he have released? 
+-- At what age did George Michael pass away? How many studio albums did he have released? 
 
 SELECT Demo.Age, Albums.StudioAlbums
 FROM OldSingersDemographics Demo
@@ -107,7 +107,7 @@ JOIN AlbumsReleased Albums
 ON Demo.ID = Albums.SingerID
 WHERE Name = 'George Michael';
 
---What is the birthplace and the name of the singers with a networth of at least $150 million?
+-- What is the birthplace and the name of the singers with a networth of at least $150 million?
 
 SELECT Demo.Name, Demo.Birthplace
 FROM OldSingersDemographics Demo
