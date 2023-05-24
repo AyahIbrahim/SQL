@@ -1,6 +1,6 @@
 /* In this project, I will be mostly using the UPDATE and DELETE functions to
 emulate what occurs to some user profiles on LinkedIn all of which have 400 connections 
-(imagining that the app stores the data in a SQL database). */
+(imagining that the app stores my data in a SQL database). */
 
 CREATE TABLE UserProfiles 
 (UserID INTEGER PRIMARY KEY,
