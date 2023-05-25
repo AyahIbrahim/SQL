@@ -6,7 +6,7 @@ CREATE TABLE OldSingersDemographics
 Name TEXT, 
 Age INTEGER,
 Birthplace TEXT,
-NetworthInMillions INTEGER,
+Networth INTEGER,
 Status TEXT);
 
 INSERT INTO OldSingersDemographics VALUES 
@@ -111,9 +111,9 @@ WHERE Name = 'George Michael';
 
 SELECT Demo.Name, Demo.Birthplace
 FROM OldSingersDemographics Demo
-WHERE NetworthInMillions >= 150;
+WHERE Networth >= 150;
 
--- Total number of songs per singer:
+-- Total number of songs per singer for those having more than 3 songs:
 
 SELECT Demo.Name, COUNT(*) AS 'Total Songs'
 FROM OldSingersDemographics Demo
