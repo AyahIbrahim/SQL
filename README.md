@@ -1,5 +1,5 @@
 # Ayah Ibrahim's SQL Portfolio 
 
-I'll be sharing all SQL projects that I have written in this code repository.
+I'll be sharing all SQL projects that I have worked on in this code repository.
 
 
