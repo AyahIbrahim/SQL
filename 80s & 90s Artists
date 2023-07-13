@@ -1,4 +1,4 @@
-/* In this project, I created multiple tables about some of 5 of my favorite 80s-90s Singers 
+/* In this project, I created multiple tables on 5 of my favorite 80s-90s Artists 
 and answered interesting questions regarding their musical journey using JOIN. */
 
 CREATE TABLE OldSingersDemographics
